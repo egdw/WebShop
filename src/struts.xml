@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" namespace="" extends="json-default">
+		<interceptors>
+			<interceptor-stack name="fileUploadStack">
+				<interceptor-ref name="fileUpload">
+					<param name="maximumSize">204800000</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor name="authority" class="com.web.shop.filter.LoginFilter"></interceptor>
+			<interceptor name="adminAuthority" class="com.web.shop.filter.AdminFilter"></interceptor>
+			<interceptor-stack name="LoginFilter">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="authority"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor-stack name="AdminFilter">
+				<interceptor-ref name="adminAuthority"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-action-ref name="pageNotFound" />
+		<global-results>
+			<result name="error" type="redirect">/error/400.jsp</result>
+			<result name="noLogin" type="redirect">/login/signin.jsp</result>
+		</global-results>
+		 <global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+			<exception-mapping result="error" exception="java.sql.SQLException"></exception-mapping>
+			<exception-mapping result="error"
+				exception="cn.codeplus.exception.InvalidInputException"></exception-mapping>
+			<exception-mapping result="error"
+				exception="javax.naming.NamingException"></exception-mapping>
+		</global-exception-mappings> 
+		<action name="pageNotFound">
+			<result>/error/404.jsp</result>
+		</action>
+		<action name="LoginAction" class="com.web.shop.action.LoginAction">
+			<result name="input">/login/signin.jsp</result>
+			<result>/index.jsp</result>
+		</action>
+		<action name="RegisterAction" class="com.web.shop.action.RegisterAction">
+			<result name="input">/login/signup.jsp</result>
+			<result>/index.jsp</result>
+		</action>
+		<action name="PublishGoodAction" class="com.web.shop.action.PublishGoodAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success" type="redirectAction">UserGoodAction?pageCount=0
+			</result>
+			<result name="input">/publish.jsp</result>
+		</action>
+		<action name="UserGoodAction" class="com.web.shop.action.UserGoodAction">
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success">/WEB-INF/person.jsp</result>
+		</action>
+		<action name="UserChangeAction" class="com.web.shop.action.UserChangeAction">
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success">person-info.jsp</result>
+			<result name="input">person-info.jsp</result>
+			<result name="updatePasswordSuccess" type="redirect">/login/signin.jsp
+			</result>
+		</action>
+		<action name="IndexAction" class="com.web.shop.action.IndexAction">
+			<result name="success">index.jsp</result>
+		</action>
+		<action name="GoodInfoAction" class="com.web.shop.action.GoodInfoAction">
+			<result name="success">/WEB-INF/goods-infor.jsp</result>
+		</action>
+		<action name="DelGoodAction" class="com.web.shop.action.DelGoodAction">
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success" type="redirectAction">UserGoodAction?pageCount=0
+			</result>
+		</action>
+
+		<action name="UserManagerAction" class="com.web.shop.action.UserManagerAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<result name="success" type="redirectAction">UserListAction?pageCount=0
+			</result>
+		</action>
+
+		<action name="DelUserAction" class="com.web.shop.action.DelUserAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<result name="success" type="redirectAction">UserListAction?pageCount=0
+			</result>
+		</action>
+
+		<action name="UserListAction" class="com.web.shop.action.UserListAction">
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success">/WEB-INF/person-admin.jsp</result>
+		</action>
+
+		<action name="GoodListAction" class="com.web.shop.action.GoodListAction">
+			<result name="success">/WEB-INF/goods.jsp</result>
+		</action>
+
+		<action name="PublishLeaveMessageAction" class="com.web.shop.action.PublishLeaveMessageAction">
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success" type="redirect">
+				GoodInfoAction?goodId=${goodId}
+			</result>
+			<result name="input" type="redirect">GoodInfoAction?goodId=${goodId}
+			</result>
+		</action>
+
+		<action name="BannerAction" class="com.web.shop.action.BannerAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<result name="success" type="redirectAction">UserListAction?pageCount=0
+			</result>
+		</action>
+
+		<action name="BannerDelAction" class="com.web.shop.action.BannerDelAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<result name="success" type="redirectAction">UserListAction?pageCount=0
+			</result>
+		</action>
+
+		<action name="LogoutAction" class="com.web.shop.action.LogoutAction">
+		</action>
+
+		<action name="GoodCompleteAction" class="com.web.shop.action.GoodCompleteAction">
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success" type="redirectAction">UserGoodAction?pageCount=0
+			</result>
+		</action>
+
+		<action name="SaledGoodListAction" class="com.web.shop.action.SaledGoodListAction">
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success">/WEB-INF/person-sellout.jsp</result>
+		</action>
+
+		<action name="SearchUserAction" class="com.web.shop.action.SearchUserAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="input" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="DelStudentAction" class="com.web.shop.action.DelStudentAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="input" type="redirect">
+				/error/400.jsp
+			</result>
+		</action>
+
+		<action name="AddStudentAction" class="com.web.shop.action.AddStudentAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="input" type="redirect">
+				/error/400.jsp
+			</result>
+		</action>
+		<action name="BatchAddStudentAction" class="com.web.shop.action.BatchAddStudentAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<interceptor-ref name="fileUploadStack"></interceptor-ref>
+			<result name="success" type="redirectAction">UserListAction?pageCount=0
+			</result>
+			<result name="input" type="redirectAction">UserListAction?pageCount=0</result>
+		</action>
+
+		<action name="CommitContactLeaveAction" class="com.web.shop.action.CommitContactLeaveAction">
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success" type="redirectAction">GoodInfoAction?goodId=${goodId}
+			</result>
+		</action>
+
+		<action name="CompleteGoodListAction" class="com.web.shop.action.CompleteGoodListAction">
+			<interceptor-ref name="LoginFilter"></interceptor-ref>
+			<result name="success">/WEB-INF/person-finished.jsp</result>
+		</action>
+
+		<action name="ResetPasswordAction" class="com.web.shop.action.resetPasswordAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<result name="success" type="redirectAction">UserListAction?pageCount=0
+			</result>
+			<result name="input" type="redirectAction">UserListAction?pageCount=0</result>
+		</action>
+
+		<action name="DelLeaveMessageAction" class="com.web.shop.action.DelLeaveMessageAction">
+			<interceptor-ref name="AdminFilter"></interceptor-ref>
+			<result name="success" type="redirect">GoodInfoAction?goodId=${goodId}
+			</result>
+			<result name="input" type="redirect">GoodInfoAction?goodId=${goodId}
+			</result>
+		</action>
+	</package>
+
+</struts>

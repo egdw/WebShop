@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-21 16:31:52 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.web.shop.model.ContactLeave" table="CONTACTLEAVE">
+        <id name="contactId" type="java.lang.Integer">
+            <column name="CONTACTID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="sendUser" class="com.web.shop.model.User" fetch="join" lazy="false">
+            <column name="SENDUSER" />
+        </many-to-one>
+        <property name="message" type="java.lang.String">
+            <column name="MESSAGE" />
+        </property>
+        <property name="mobilePhone" type="java.lang.String">
+            <column name="MOBILEPHONE" />
+        </property>
+        <many-to-one name="good" class="com.web.shop.model.Good" fetch="join" lazy="false">
+            <column name="GOOD" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

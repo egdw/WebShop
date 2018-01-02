@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-21 20:01:03 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.web.shop.model.GoodComplete" table="GOODCOMPLETE">
+		<id name="goodCompleteId" type="java.lang.Integer">
+			<column name="GOODCOMPLETEID" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="ownerUser" class="com.web.shop.model.User"
+			fetch="join" lazy="false">
+			<column name="OWNERUSER" />
+		</many-to-one>
+		<many-to-one name="goodId" class="com.web.shop.model.Good"
+			fetch="join" lazy="false">
+			<column name="GOODID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

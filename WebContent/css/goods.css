@@ -1,0 +1,181 @@
+@import "./common.css";
+
+.goods_left {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.goods_right {
+    width: 180px;
+    min-width: 180px;
+    float: left;
+}
+
+.classify {
+    width: 1190px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.classify a {
+    color: black;
+    text-decoration: none;
+}
+
+.classify a:hover {
+    color: #f50;
+}
+
+.classify_in {
+    width: 100%;
+    padding-left: 20px;
+    border: solid 1px #ddd;
+}
+
+.classify_in li {
+    float: left;
+    line-height: 50px;
+    /* width: 200px; */
+    padding: 0 40px;
+}
+
+.classify_in li a {
+    text-decoration: none;
+    color: black;
+}
+
+.classify_in li a:hover {
+    color: #f50;
+}
+
+.goods_thro {
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+
+    padding-bottom: 20px;
+}
+
+.goods_thro_in {
+    float: left;
+    width: 202px;
+    height: 340px;
+    border: 1px solid #ddd;
+    margin: 15px 17px 0 17px;
+    -webkit-transition: border-color .3s;
+    -moz-transition: border-color .3s;
+    -o-transition: border-color .3s;
+    transition: border-color .3s;
+}
+.goods_thro_in:hover {
+    border: 1px solid #f50;
+    -webkit-transition: border-color .3s;
+    -moz-transition: border-color .3s;
+    -o-transition: border-color .3s;
+    transition: border-color .3s;
+}
+
+.goods_img {
+    width: 200px;
+    height: 200px;
+    -webkit-transition: opacity .2s;
+    -moz-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    transition: opacity .2s;
+}
+.goods_img:hover {
+    opacity: .8;
+    -webkit-transition: opacity .2s;
+    -moz-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    transition: opacity .2s;
+}
+
+.goods_thro_in ul {
+    width: 90%;
+    margin: 5px auto;
+    height: 140px;
+    padding-left: 0;
+    position: relative;
+}
+
+.heading_1, .heading_2, .heading_3 {
+    width: 180px;
+    word-break: break-all;
+}
+
+.heading_1 {
+    color: #f50;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.heading_1 span {
+    position: absolute;
+    right: 0px;
+    color: #999;
+    font-size: 14px;
+}
+
+.heading_2 {
+    height: 60px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 5px;
+    color: #000;
+    font-size: 14px;
+}
+
+.heading_2 a {
+    color: #000;
+}
+
+.heading_3 {
+    margin-top: 10px;
+    color: #999;
+}
+
+.heading_3 a {
+    color: #999;
+}
+
+.heading_3 span {
+    position: absolute;
+    right: 0px;
+    color: #999;
+    font-size: 14px;
+}
+
+.recommend {
+    width: 180px;
+    height: 700px;
+    margin: 20px auto;
+
+}
+
+.recommend_in {
+    float: left;
+    height: 240px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.recommend_in:hover {
+    border: 1px solid #f50;
+}
+
+.recommend ul {
+    width: 90%;
+    margin: 5px auto;
+    height: 30px;
+    padding-left: 0;
+    position: relative;
+}
+
+.recommend_img {
+    width: 200px;
+    height: 200px;
+}

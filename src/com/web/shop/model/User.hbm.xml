@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-21 14:33:25 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.web.shop.model.User" table="USER">
+        <id name="user_id" type="java.lang.Integer">
+            <column name="USER_ID" />
+            <generator class="native" />
+        </id>
+        <property name="user_username" type="java.lang.String">
+            <column name="USER_USERNAME" />
+        </property>
+        <property name="user_password" type="java.lang.String">
+            <column name="USER_PASSWORD" />
+        </property>
+        <property name="register_date" type="java.sql.Date">
+            <column name="REGISTER_DATE" />
+        </property>
+        <property name="denied" type="boolean">
+            <column name="DENIED" />
+        </property>
+        <property name="manager" type="boolean">
+            <column name="MANAGER" />
+        </property>
+        <property name="verify" type="boolean">
+            <column name="VERIFY" />
+        </property>
+        <property name="headImage" type="java.lang.String">
+            <column name="HEADIMAGE" />
+        </property>
+        <property name="email" type="java.lang.String" access="field">
+            <column name="EMAIL" />
+        </property>
+        <property name="isEmailVerify" type="boolean" access="field">
+            <column name="ISEMAILVERIFY" />
+        </property>
+    </class>
+</hibernate-mapping>

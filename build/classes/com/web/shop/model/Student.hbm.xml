@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-21 14:33:25 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.web.shop.model.Student" table="STUDENT">
+        <id name="sid" type="java.lang.Long">
+            <column name="SID" />
+            <generator class="assigned" />
+        </id>
+        <property name="studentName" type="java.lang.String">
+            <column name="STUDENTNAME" />
+        </property>
+         <many-to-one name="user" class="com.web.shop.model.User" fetch="join">
+            <column name="USER" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

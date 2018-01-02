@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 是否在控制台自动打印生成的sql语句 -->
+		<property name="hibernate.show_sql">false</property>
+		<!-- 生成数据库表的策略 -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- 时候对sql语句进行格式化 -->
+		<property name="hibernate.format_sql">true</property>
+		<property name="connection.autocommit">true</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+
+		<property name="hibernate.c3p0.min_size">5</property>
+
+		<property name="hibernate.c3p0.timeout">120</property>
+
+		<property name="automaticTestTable">Test</property>
+
+		<property name="hibernate.c3p0.max_statements">100</property>
+
+		<property name="hibernate.c3p0.idle_test_period">120</property>
+
+		<property name="hibernate.c3p0.acquire_increment">1</property>
+
+		<property name="c3p0.testConnectionOnCheckout">true</property>
+
+		<property name="c3p0.idleConnectionTestPeriod">18000</property>
+
+		<property name="c3p0.maxIdleTime">240</property>
+
+		<property name="c3p0.idle_test_period">120</property>
+		<!-- 数据库方言 -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<mapping resource="com/web/shop/model/User.hbm.xml" />
+		<mapping resource="com/web/shop/model/Good.hbm.xml" />
+		<mapping resource="com/web/shop/model/UserLeaveMessage.hbm.xml" />
+		<mapping resource="com/web/shop/model/Banner.hbm.xml"/>
+		<mapping resource="com/web/shop/model/Student.hbm.xml"/>
+		<mapping resource="com/web/shop/model/ContactLeave.hbm.xml"/>
+		<mapping resource="com/web/shop/model/GoodComplete.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

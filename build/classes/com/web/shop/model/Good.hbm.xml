@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-21 14:33:25 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.web.shop.model.Good" table="GOOD">
+        <id name="goodId" type="java.lang.Integer">
+            <column name="GOODID" />
+            <generator class="native" />
+        </id>
+        <property name="goodName" type="java.lang.String">
+            <column name="GOODNAME" />
+        </property>
+        <property name="goodNum" type="java.lang.Integer">
+            <column name="GOODNUM" />
+        </property>
+        <property name="formerPrice" type="java.lang.Double">
+            <column name="FORMERPRICE" />
+        </property>
+        <property name="salePrice" type="java.lang.Double">
+            <column name="SALEPRICE" />
+        </property>
+        <property name="isSale" type="boolean" access="field">
+            <column name="ISSALE" />
+        </property>
+        <property name="createDate" type="java.sql.Date">
+            <column name="CREATEDATE" />
+        </property>
+        <property name="goodType" type="java.lang.Integer">
+            <column name="GOODTYPE" />
+        </property>
+        <property name="goodFrom" type="java.lang.Integer">
+            <column name="GOODFROM" />
+        </property>
+        <property name="goodDescription" type="java.lang.String">
+            <column name="GOODDESCRIPTION" />
+        </property>
+        <many-to-one name="goodUser" class="com.web.shop.model.User" fetch="join">
+            <column name="GOODUSER" />
+        </many-to-one>
+        <property name="phoneNumber" type="java.lang.String">
+            <column name="PHONENUMBER" />
+        </property>
+        <property name="images" type="java.lang.String">
+            <column name="IMAGES" />
+        </property>
+        <property name="goodWatchNum" type="int">
+            <column name="GOODWATCHNUM" />
+        </property>
+        <property name="firstImage" type="java.lang.String">
+            <column name="FIRSTIMAGE" />
+        </property>
+        <property name="isGet" type="boolean" access="field">
+            <column name="ISGET" />
+        </property>
+    </class>
+</hibernate-mapping>
